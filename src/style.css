@@ -2,3 +2,38 @@
     margin: 0px;
     padding: 0px;
 }
+
+.heading{
+    height: 8vh;
+    width: 24vw;
+    background-color: rgb(109, 211, 211);
+    margin: 25px 38vw;
+    border-radius: 25px;
+    /* Next 3 Lines are to center the content present in the particular div */
+    align-items: center; 
+    justify-content: center;
+    display: flex;
+}
+
+.heading p{
+    font-size: 150%;
+    color: white;
+}
+
+.playground{
+    height: calc(90vh - 150px);
+    width: 40vw;
+    background-color: burlywood;
+    margin: 50px 30vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.playground .cells{
+    height: 33.3%;
+    width: 33.3%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
