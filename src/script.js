@@ -4,10 +4,12 @@ let choice = [0,0,0,0,0,0,0,0,0];
 let player = 'X';
 
 const evaluate = (choice) =>{
-    if(checkHorizontalPattern(choice))
-        console.log("You Win!!");
-    else
-        console.log("You Lose!");
+    if(checkDiagonalPattern(choice) || checkHorizontalPattern(choice) || checkVerticalPattern(choice)){
+        console.log(player, "has won the game")
+        return true;
+    }
+    else 
+     return false;
 }
 
 const checkHorizontalPattern = (choice) =>{
@@ -20,6 +22,30 @@ const checkHorizontalPattern = (choice) =>{
     else if(choice[6]!=0 && choice[6]==choice[7] && choice[7]==choice[8])
         return true;
     return false;
+}
+
+const checkVerticalPattern = (choice) =>{
+    if(choice[0]==0 && choice[1] == 0 && choice[2] == 0)
+        return false;
+    else if(choice[0] !=0 && choice[0]==choice[3] && choice[3]==choice[6])
+        return true;
+    else if(choice[1]!=0 && choice[1]==choice[4] && choice[4]==choice[7])
+        return true;
+    else if(choice[2]!=0 && choice[2]==choice[5] && choice[5]==choice[8])
+        return true;
+    else
+        return false;
+}
+
+const checkDiagonalPattern = (choice) =>{
+    if(choice[0]==0 && choice[2]==0)
+        return false;
+    else if(choice[0]!=0 && choice[0]==choice[4] && choice[4]==choice[8])
+        return true;
+    else if(choice[2]!=0 && choice[2]==choice[4] && choice[4]==choice[6])
+        return true;
+    else
+        return false;
 }
 
 const changePlayer = (player) =>{
@@ -39,8 +65,13 @@ const addResult = (choice,pos) =>{
 cells[0].addEventListener("click",(evt)=>{
     if(choice[0]==0){
         choice[0]=player;
-        player = changePlayer(player);
         addResult(choice[0],0);
+        if(evaluate(choice)){
+            console.log("Players change")
+        }
+        else{
+            player = changePlayer(player);
+        }
     }
     else
         console.log("It was already choosen by",choice[0]);
