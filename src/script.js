@@ -5,7 +5,8 @@ let player = 'X';
 
 const evaluate = (choice) =>{
     if(checkDiagonalPattern(choice) || checkHorizontalPattern(choice) || checkVerticalPattern(choice)){
-        console.log(player, "has won the game")
+        let res = document.querySelector("#result");
+        res.textContent = player + " has won the game"
         return true;
     }
     else 
@@ -62,42 +63,79 @@ const addResult = (choice,pos) =>{
     cells[pos].append(ch);
 }
 
-cells[0].addEventListener("click",(evt)=>{
-    if(choice[0]==0){
-        choice[0]=player;
-        addResult(choice[0],0);
+const makeChoice = (pos) =>{
+    if(choice[pos]==0){
+        choice[pos] = player;
+        addResult(choice[pos],pos);
         if(evaluate(choice)){
-            console.log("Players change")
+            
         }
         else{
             player = changePlayer(player);
         }
     }
     else
-        console.log("It was already choosen by",choice[0]);
+    {
+        let res = document.querySelector("#result");
+        res.textContent = "Pos " + pos + " was already choosen by " + choice[pos];
+    }
+}
+
+cells[0].addEventListener("click",(evt)=>{
+    makeChoice(0);
 })
+
 
 cells[1].addEventListener("click",(evt)=>{
-    if(choice[1]==0){
-        choice[1]=player;
-        player = changePlayer(player);
-        addResult(choice[1],1);
-    }
-    else
-        console.log("It was already choosen by",choice[1]);
+    makeChoice(1);
 })
+
 
 cells[2].addEventListener("click",(evt)=>{
-    alert("Box-3");
-    console.log(evt);
+    makeChoice(2);
 })
 
+
 cells[3].addEventListener("click",(evt)=>{
-    if(choice[3]==0){
-        choice[3]=player;
-        player = changePlayer(player);
-        addResult(choice[3],3);
-    }
-    else
-        console.log("It was already choosen by",choice[3]);
+    makeChoice(3);
 })
+
+
+cells[4].addEventListener("click",(evt)=>{
+    makeChoice(4);
+})
+
+
+cells[5].addEventListener("click",(evt)=>{
+    makeChoice(5);
+})
+
+
+cells[6].addEventListener("click",(evt)=>{
+    makeChoice(6);
+})
+
+
+cells[7].addEventListener("click",(evt)=>{
+    makeChoice(7);
+})
+
+
+cells[8].addEventListener("click",(evt)=>{
+    makeChoice(8);
+})
+
+// cells[1].addEventListener("click",(evt)=>{
+//     if(choice[1]==0){
+//         choice[1]=player;
+//         player = changePlayer(player);
+//         addResult(choice[1],1);
+//     }
+//     else
+//         console.log("It was already choosen by",choice[1]);
+// })
+
+// cells[2].addEventListener("click",(evt)=>{
+//     alert("Box-3");
+//     console.log(evt);
+// })
