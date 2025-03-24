@@ -9,6 +9,11 @@ const evaluate = (choice) =>{
         res.textContent = player + " has won the game"
         return true;
     }
+    else if(checkforDraw(choice)){
+        let res = document.querySelector("#result");
+        res.textContent = "It's  a Draw";
+        return true;
+    }
     else 
      return false;
 }
@@ -49,6 +54,12 @@ const checkDiagonalPattern = (choice) =>{
         return false;
 }
 
+const checkforDraw = (choice) =>{
+    if(choice[0]!=0 && choice[1]!=0 && choice[2]!=0 && choice[3]!=0 &&
+        choice[4]!=0 && choice[5]!=0 && choice[6]!=0 && choice[7]!=0 && choice[8]!=0)
+    return true;
+    return false;
+}
 const changePlayer = (player) =>{
     if(player=='X')
         return 'O'
@@ -68,7 +79,7 @@ const makeChoice = (pos) =>{
         choice[pos] = player;
         addResult(choice[pos],pos);
         if(evaluate(choice)){
-            
+            setTimeout(()=>{window.location.reload()},5000);
         }
         else{
             player = changePlayer(player);
